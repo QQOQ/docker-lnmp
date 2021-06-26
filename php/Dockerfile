@@ -20,11 +20,11 @@ RUN git clone https://git.php.net/repository/pecl/database/mysql.git \
     && rm -rf mysql \
     && pecl install redis \
     && pecl install uuid \
-    && pecl install xdebug \
-    && pecl install mongodb \
-    && pecl install imagick \
+    #&& pecl install xdebug \
+    #&& pecl install mongodb \
+    #&& pecl install imagick \
     && pecl install swoole \
-    && docker-php-ext-enable mysql redis uuid xdebug mongodb imagick swoole
+    && docker-php-ext-enable mysql redis uuid swoole
 
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
     && docker-php-ext-install gd \
@@ -39,14 +39,14 @@ RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/i
 
 USER www-data
 
-RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/ \
-    && composer global require "hirak/prestissimo" \
-    && composer global require "fxp/composer-asset-plugin" \
-    && composer global require "symfony/var-dumper"
+RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+    #&& composer global require "hirak/prestissimo" \
+    #&& composer global require "fxp/composer-asset-plugin" \
+    #&& composer global require "symfony/var-dumper"
 
-USER root
+#USER root
 
-RUN echo "auto_prepend_file = \"/home/www-data/.composer/vendor/autoload.php\"" > /usr/local/etc/php/conf.d/docker-php-composer.ini
+#RUN echo "auto_prepend_file = \"/home/www-data/.composer/vendor/autoload.php\"" > /usr/local/etc/php/conf.d/docker-php-composer.ini
 
 VOLUME /Documents
 
