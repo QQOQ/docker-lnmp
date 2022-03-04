@@ -13,19 +13,6 @@ services:
       - ~/Documents/web:/Documents:delegated
     restart: always
 
-  php:
-    build: ./php
-    ports:
-      - 9501:9501
-      - 9502:9502
-    depends_on:
-      - mysql
-      - redis
-    volumes:
-      - ./php/custom.php.ini:/usr/local/etc/php/conf.d/docker-php-custom.ini
-      - ~/Documents/web:/Documents:delegated
-    restart: always
-
   mysql:
     build: ./mysql
     ports:
@@ -42,4 +29,30 @@ services:
     volumes:
       - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
       - ./redis/data:/data
+    restart: always
+
+  php:
+    build: ./php
+    ports:
+      - 9501:9501
+      - 9502:9502
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - ./php/custom.php.ini:/usr/local/etc/php/conf.d/docker-php-custom.ini
+      - ~/Documents/web:/Documents:delegated
+    restart: always
+
+  php8:
+    build: ./php8
+    ports:
+      - 9503:9501
+      - 9504:9502
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - ./php8/custom.php.ini:/usr/local/etc/php/conf.d/docker-php-custom.ini
+      - ~/Documents/web:/Documents:delegated
     restart: always
