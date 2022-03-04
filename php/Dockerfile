@@ -1,6 +1,8 @@
 FROM php:7.4-fpm-alpine
 
 EXPOSE 9000
+EXPOSE 9501
+EXPOSE 9502
 
 COPY custom.php.ini /usr/local/etc/php/conf.d/docker-php-custom.ini
 
@@ -31,6 +33,7 @@ RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/i
     && docker-php-ext-install intl \
     && docker-php-ext-install mysqli \
     && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install pcntl \
     && docker-php-ext-install pdo_pgsql \
     && docker-php-ext-install soap \
     && docker-php-ext-install bcmath \

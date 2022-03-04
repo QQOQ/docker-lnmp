@@ -5,8 +5,6 @@ services:
     ports:
       - 80:80
       - 443:443
-      - 9501:9501
-      - 9502:9502
     depends_on:
       - php
     volumes:
@@ -17,6 +15,9 @@ services:
 
   php:
     build: ./php
+    ports:
+      - 9501:9501
+      - 9502:9502
     depends_on:
       - mysql
       - redis
