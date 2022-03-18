@@ -17,6 +17,7 @@ RUN pecl install uuid \
     #&& pecl install mongodb \
     #&& pecl install imagick \
     && pecl install redis \
+    && pecl install zip \
     && pecl install swoole \
     && docker-php-ext-enable redis uuid swoole
 
@@ -24,6 +25,7 @@ RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/i
     && docker-php-ext-install gd \
     && docker-php-ext-install intl \
     && docker-php-ext-install mysqli \
+    && docker-php-ext-install zip \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install pcntl \
     && docker-php-ext-install pdo_pgsql \
