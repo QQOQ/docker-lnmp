@@ -9,7 +9,7 @@ COPY custom.php.ini /usr/local/etc/php/conf.d/docker-php-custom.ini
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
     && apk add --update-cache --no-cache \
         autoconf g++ make util-linux-dev re2c libpng-dev icu-dev freetype-dev \
-        openssl-dev pcre-dev jpeg-dev libtool imagemagick imagemagick-dev postgresql-dev tzdata linux-headers git sudo libbsd libxml2-dev libzip-dev \
+        openssl-dev pcre-dev jpeg-dev libtool imagemagick imagemagick-dev postgresql-dev tzdata linux-headers git sudo libbsd libxml2-dev zlib1g-dev libzip-dev \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 RUN pecl install uuid \
