@@ -1,5 +1,20 @@
 version: "3"
 services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    volumes:
+      - ~/Documents/rabbitmq:/var/lib/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_VHOST: my_vhost
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+      HOMEDRIVE: /var/lib/rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    hostname: myRabbit
+
   nginx:
     build: ./nginx
     ports:
