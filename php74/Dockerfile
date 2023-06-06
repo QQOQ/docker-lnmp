@@ -10,12 +10,11 @@ RUN apk add autoconf g++ make util-linux-dev re2c libpng-dev icu-dev freetype-de
         openssl-dev pcre-dev jpeg-dev libtool imagemagick imagemagick-dev postgresql-dev tzdata linux-headers git sudo libbsd libxml2-dev libzip-dev \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-RUN pecl install redis \
-    && pecl install zip \
-    && docker-php-ext-enable redis
+RUN pecl install redis
+#RUN pecl install zip
+RUN docker-php-ext-enable redis
 
-RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
-    && docker-php-ext-install gd \
+RUN docker-php-ext-install gd \
     && docker-php-ext-install intl \
     && docker-php-ext-install mysqli \
     && docker-php-ext-install zip \
