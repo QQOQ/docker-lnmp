@@ -16,8 +16,7 @@ RUN #pecl install uuid \
     #&& pecl install imagick \
     && pecl install redis \
     && pecl install zip \
-    && pecl install swoole \
-    && docker-php-ext-enable redis uuid swoole
+    && docker-php-ext-enable redis uuid
 
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
     && docker-php-ext-install gd \
@@ -29,12 +28,12 @@ RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/i
     && docker-php-ext-install pdo_pgsql \
     && docker-php-ext-install soap \
     && docker-php-ext-install bcmath \
-    && curl -o /usr/local/bin/composer https://mirrors.aliyun.com/composer/composer.phar \
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && chmod +x /usr/local/bin/composer
 
 USER www-data
 
-RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+#RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
     #&& composer global require "hirak/prestissimo" \
     #&& composer global require "fxp/composer-asset-plugin" \
     #&& composer global require "symfony/var-dumper"
