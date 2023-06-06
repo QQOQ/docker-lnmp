@@ -12,13 +12,9 @@ RUN apk add rabbitmq-c rabbitmq-c-dev \
         tzdata linux-headers git sudo libbsd libxml2-dev libzip-dev \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-RUN #pecl install uuid \
-    #&& pecl install xdebug \
-    #&& pecl install mongodb \
-    #&& pecl install imagick \
-    && pecl install redis \
+RUN pecl install redis \
     && pecl install zip \
-    && docker-php-ext-enable redis uuid
+    && docker-php-ext-enable redis
 
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
     && docker-php-ext-install gd \
