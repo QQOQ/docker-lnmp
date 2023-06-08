@@ -1,9 +1,5 @@
 FROM php:7.4-fpm-alpine
 
-EXPOSE 9000
-EXPOSE 9501
-EXPOSE 9502
-
 COPY custom.php.ini /usr/local/etc/php/conf.d/docker-php-custom.ini
 
 RUN apk add autoconf g++ make util-linux-dev re2c libpng-dev icu-dev freetype-dev \
@@ -11,7 +7,6 @@ RUN apk add autoconf g++ make util-linux-dev re2c libpng-dev icu-dev freetype-de
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 RUN pecl install redis
-#RUN pecl install zip
 RUN docker-php-ext-enable redis
 
 RUN docker-php-ext-install gd \
