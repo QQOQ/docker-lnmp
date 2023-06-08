@@ -69,8 +69,8 @@ services:
     swoole:
         build: ./swoole
         ports:
-            - 9505:9505
-            - 9506:9506
+            - 9501:9501
+            - 9502:9502
         volumes:
             - ./swoole/custom.php.ini:/home/swoole.ini
             - ~/Documents/web:/www:delegated
