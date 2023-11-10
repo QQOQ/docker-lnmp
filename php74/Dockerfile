@@ -6,6 +6,8 @@ RUN apk add autoconf g++ make util-linux-dev re2c libpng-dev icu-dev freetype-de
         openssl-dev pcre-dev jpeg-dev libtool imagemagick imagemagick-dev postgresql-dev tzdata linux-headers git sudo libbsd libxml2-dev libzip-dev \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
+RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg
+
 RUN pecl install redis
 RUN docker-php-ext-enable redis
 
@@ -20,6 +22,7 @@ RUN docker-php-ext-install gd \
     && docker-php-ext-install bcmath \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && chmod +x /usr/local/bin/composer
+
 
 USER www-data
 
