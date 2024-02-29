@@ -46,6 +46,16 @@ services:
             - ./redis/data:/data
         restart: always
 
+    php72:
+        build: ./php72
+        depends_on:
+            - mysql
+            - redis
+        volumes:
+            - ./php72/custom.php.ini:/usr/local/etc/php/conf.d/docker-php-custom.ini
+            - ~/Documents/web:/Documents:delegated
+        restart: always
+
     php74:
         build: ./php74
         depends_on:
@@ -63,6 +73,16 @@ services:
             - redis
         volumes:
             - ./php80/custom.php.ini:/usr/local/etc/php/conf.d/docker-php-custom.ini
+            - ~/Documents/web:/Documents:delegated
+        restart: always
+
+    php82:
+        build: ./php82
+        depends_on:
+            - mysql
+            - redis
+        volumes:
+            - ./php82/custom.php.ini:/usr/local/etc/php/conf.d/docker-php-custom.ini
             - ~/Documents/web:/Documents:delegated
         restart: always
 

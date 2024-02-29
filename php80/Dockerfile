@@ -2,7 +2,8 @@ FROM php:8.0-fpm-alpine
 
 COPY custom.php.ini /usr/local/etc/php/conf.d/docker-php-custom.ini
 
-RUN apk add rabbitmq-c rabbitmq-c-dev \
+RUN sed -i 's/https/http/' /etc/apk/repositories
+RUN apk add curl rabbitmq-c rabbitmq-c-dev \
         autoconf g++ make util-linux-dev re2c libpng-dev icu-dev freetype-dev \
         openssl-dev pcre-dev jpeg-dev libtool imagemagick imagemagick-dev postgresql-dev \
         tzdata linux-headers git sudo libbsd libxml2-dev libzip-dev \
